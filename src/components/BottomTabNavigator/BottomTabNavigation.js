@@ -2,9 +2,9 @@ import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import colors from '../../constants/colors';
 import HomeScreen from '../../screens/HomeScreen';
-import Favorites from '../../screens/Favorites';
-import Icon from 'react-native-vector-icons/MaterialIcons';
 import Categories from '../../screens/Categories';
+import BottomIconsActive from '../UI/BottomIconsActive';
+import BottomIconsInactive from '../UI/BottmIconsInactive';
 
 const Tab = createBottomTabNavigator();
 
@@ -18,7 +18,7 @@ const screenOptions = {
     right: 0,
     left: 0,
     elevation: 0,
-    height: 70,
+    height: 80,
     background: colors.backgroundDark,
   },
 };
@@ -30,58 +30,51 @@ const BottomTabNavigation = () => {
         name="Home"
         component={HomeScreen}
         options={{
+          title: 'Home',
           tabBarIcon: ({focused}) => {
-            return (
-              <Icon
-                name="home"
-                size={focused ? 34 : 24}
-                color={focused ? colors.warning : colors.buttonDisabled}
-              />
+            return focused ? (
+              <BottomIconsActive name="home" />
+            ) : (
+              <BottomIconsInactive name="home" />
             );
           },
         }}
       />
       <Tab.Screen
         name="Categories"
-        component={Categories}
+        component={() => <Categories name="Categories" />}
         options={{
           tabBarIcon: ({focused}) => {
-            return (
-              <Icon
-                name="category"
-                size={focused ? 34 : 24}
-                color={focused ? colors.warning : colors.buttonDisabled}
-              />
+            return focused ? (
+              <BottomIconsActive name="category" />
+            ) : (
+              <BottomIconsInactive name="category" />
             );
           },
         }}
       />
       <Tab.Screen
         name="Favorite"
-        component={Favorites}
+        component={() => <Categories name="Favorites" />}
         options={{
           tabBarIcon: ({focused}) => {
-            return (
-              <Icon
-                name="favorite"
-                size={focused ? 34 : 24}
-                color={focused ? colors.warning : colors.buttonDisabled}
-              />
+            return focused ? (
+              <BottomIconsActive name="favorite" />
+            ) : (
+              <BottomIconsInactive name="favorite" />
             );
           },
         }}
       />
       <Tab.Screen
         name="More"
-        component={Categories}
+        component={() => <Categories name="More" />}
         options={{
           tabBarIcon: ({focused}) => {
-            return (
-              <Icon
-                name="more-vert"
-                size={focused ? 34 : 24}
-                color={focused ? colors.warning : colors.buttonDisabled}
-              />
+            return focused ? (
+              <BottomIconsActive name="more-vert" />
+            ) : (
+              <BottomIconsInactive name="more-vert" />
             );
           },
         }}
