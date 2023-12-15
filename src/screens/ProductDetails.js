@@ -69,84 +69,80 @@ const ProductDetailsScreen = ({route, navigation}) => {
   }
 
   return (
-    <SafeAreaView>
-      <View style={styles.container}>
-        <View style={styles.navigationBar}>
+    <View style={styles.container}>
+      <View style={styles.navigationBar}>
+        <IconButton
+          icon="arrow-back-ios"
+          size={24}
+          color={colors.primary}
+          onPress={() => navigation.navigate('Home')}
+        />
+        <View>
+          {cartItems.length > 0 && <Badge count={cartItems.length} />}
           <IconButton
-            icon="arrow-back-ios"
+            icon="shopping-cart"
             size={24}
             color={colors.primary}
-            onPress={() => navigation.navigate('Home')}
+            onPress={() => navigation.navigate('Cart')}
           />
-          <View>
-            {cartItems.length > 0 && <Badge count={cartItems.length} />}
-            <IconButton
-              icon="shopping-cart"
-              size={24}
-              color={colors.primary}
-              onPress={() => navigation.navigate('Cart')}
-            />
-          </View>
-        </View>
-        <View style={styles.titleContainer}>
-          {productDetails?.title?.length > 11 ? (
-            <>
-              <Text style={styles.title}>
-                {productDetails.title.substr(0, 11)}
-              </Text>
-              <Text style={styles.title2}>
-                {productDetails.title.substr(11)}
-              </Text>
-            </>
-          ) : (
-            <Text style={styles.title}>{productDetails.title}</Text>
-          )}
-        </View>
-        <View style={styles.middleContainer}>
-          <View style={styles.favBtn}>
-            <IconButton
-              icon={
-                favs.find(f => f === productDetails.id)
-                  ? 'favorite'
-                  : 'favorite-border'
-              }
-              size={24}
-              color={colors.customColor2}
-              onPress={() => handleUpdateFav(productDetails)}
-            />
-          </View>
-          {productDetails?.images?.length > 0 && (
-            <View style={{width: '100%'}}>
-              <FlatList
-                data={productDetails.images}
-                renderItem={({item}) => <SlideItem item={item} />}
-                horizontal
-                pagingEnabled
-                snapToAlignment="center"
-              />
-            </View>
-          )}
-        </View>
-
-        <Text style={styles.price}>${productDetails.price}</Text>
-        <View style={styles.buttonContainer}>
-          <TouchableOpacity
-            style={styles.sBtn}
-            onPress={() => handleAddToCart(productDetails)}>
-            <Text style={styles.sText}>Add to Cart</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.pBtn}
-            onPress={() => handleBuyNow(productDetails)}>
-            <Text style={styles.pText}>Buy Now</Text>
-          </TouchableOpacity>
-        </View>
-        <View style={styles.detailsContainer}>
-          <Text style={{fontSize: 20, fontWeight: '600'}}>Details</Text>
-          <Text style={styles.description}>{productDetails.description}</Text>
         </View>
       </View>
-    </SafeAreaView>
+      <View style={styles.titleContainer}>
+        {productDetails?.title?.length > 11 ? (
+          <>
+            <Text style={styles.title}>
+              {productDetails.title.substr(0, 11)}
+            </Text>
+            <Text style={styles.title2}>{productDetails.title.substr(11)}</Text>
+          </>
+        ) : (
+          <Text style={styles.title}>{productDetails.title}</Text>
+        )}
+      </View>
+      <View style={styles.middleContainer}>
+        <View style={styles.favBtn}>
+          <IconButton
+            icon={
+              favs.find(f => f === productDetails.id)
+                ? 'favorite'
+                : 'favorite-border'
+            }
+            size={24}
+            color={colors.customColor2}
+            onPress={() => handleUpdateFav(productDetails)}
+          />
+        </View>
+        {productDetails?.images?.length > 0 && (
+          <View style={{width: '100%'}}>
+            <FlatList
+              data={productDetails.images}
+              renderItem={({item}) => <SlideItem item={item} />}
+              horizontal
+              pagingEnabled
+              snapToAlignment="center"
+            />
+          </View>
+        )}
+      </View>
+
+      <Text style={styles.price}>${productDetails.price}</Text>
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity
+          style={styles.sBtn}
+          onPress={() => handleAddToCart(productDetails)}>
+          <Text style={styles.sText}>Add to Cart</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.pBtn}
+          onPress={() => handleBuyNow(productDetails)}>
+          <Text style={styles.pText}>Buy Now</Text>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.detailsContainer}>
+        <Text style={styles.details}>Details</Text>
+        <Text style={styles.description}>{productDetails.description}</Text>
+      </View>
+    </View>
   );
 };
 
@@ -164,7 +160,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center',
     marginHorizontal: 15,
-    marginVertical: 30,
+    marginVertical: 10,
   },
   titleContainer: {
     marginVertical: 10,
@@ -196,6 +192,10 @@ const styles = StyleSheet.create({
   detailsContainer: {
     marginVertical: 15,
     marginHorizontal: 20,
+  },
+  details: {
+    fontSize: 20,
+    fontWeight: '500',
   },
   description: {
     marginVertical: 10,

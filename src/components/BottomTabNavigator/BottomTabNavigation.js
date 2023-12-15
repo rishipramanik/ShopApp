@@ -3,7 +3,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import colors from '../../constants/colors';
 import HomeScreen from '../../screens/HomeScreen';
 import Favorites from '../../screens/Favorites';
-// import {MaterialIcons} from '@expo/vector-icons';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import Categories from '../../screens/Categories';
 
 const Tab = createBottomTabNavigator();
@@ -29,62 +29,62 @@ const BottomTabNavigation = () => {
       <Tab.Screen
         name="Home"
         component={HomeScreen}
-        // options={{
-        //   tabBarIcon: ({focused}) => {
-        //     return (
-        //       <MaterialIcons
-        //         name="home"
-        //         size={focused ? 34 : 24}
-        //         color={focused ? colors.warning : colors.buttonDisabled}
-        //       />
-        //     );
-        //   },
-        // }}
+        options={{
+          tabBarIcon: ({focused}) => {
+            return (
+              <Icon
+                name="home"
+                size={focused ? 34 : 24}
+                color={focused ? colors.warning : colors.buttonDisabled}
+              />
+            );
+          },
+        }}
       />
       <Tab.Screen
         name="Categories"
         component={Categories}
-        // options={{
-        //   tabBarIcon: ({focused}) => {
-        //     return (
-        //       <MaterialIcons
-        //         name="category"
-        //         size={focused ? 34 : 24}
-        //         color={focused ? colors.warning : colors.buttonDisabled}
-        //       />
-        //     );
-        //   },
-        // }}
+        options={{
+          tabBarIcon: ({focused}) => {
+            return (
+              <Icon
+                name="category"
+                size={focused ? 34 : 24}
+                color={focused ? colors.warning : colors.buttonDisabled}
+              />
+            );
+          },
+        }}
       />
       <Tab.Screen
         name="Favorite"
         component={Favorites}
-        // options={{
-        //   tabBarIcon: ({focused}) => {
-        //     return (
-        //       <MaterialIcons
-        //         name="favorite"
-        //         size={focused ? 34 : 24}
-        //         color={focused ? colors.warning : colors.buttonDisabled}
-        //       />
-        //     );
-        //   },
-        // }}
+        options={{
+          tabBarIcon: ({focused}) => {
+            return (
+              <Icon
+                name="favorite"
+                size={focused ? 34 : 24}
+                color={focused ? colors.warning : colors.buttonDisabled}
+              />
+            );
+          },
+        }}
       />
       <Tab.Screen
         name="More"
         component={Categories}
-        // options={{
-        //   tabBarIcon: ({focused}) => {
-        //     return (
-        //       <MaterialIcons
-        //         name="more-vert"
-        //         size={focused ? 34 : 24}
-        //         color={focused ? colors.warning : colors.buttonDisabled}
-        //       />
-        //     );
-        //   },
-        // }}
+        options={{
+          tabBarIcon: ({focused}) => {
+            return (
+              <Icon
+                name="more-vert"
+                size={focused ? 34 : 24}
+                color={focused ? colors.warning : colors.buttonDisabled}
+              />
+            );
+          },
+        }}
       />
     </Tab.Navigator>
   );

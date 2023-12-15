@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
   },
   topContainer: {
     height: 280,
-    paddingTop: '15%',
+    paddingTop: '5%',
     backgroundColor: colors.primary,
     justifyContent: 'space-between',
   },
